@@ -4,6 +4,16 @@ from datetime import date
 
 # Create your models here.
 
+class City(models.Model):
+    #handle city/state separately?
+    name = models.CharField(max_length=100)
+    image = models.CharField(max_length=250, default = '')
+    
+    class Meta:
+        verbose_name_plural='cities'
+
+    def __str__(self):
+        return self.name
 class Author(models.Model):
     name = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -20,16 +30,6 @@ class Author(models.Model):
     def get_posts(self):
         return self.user.posts.all()
 
-class City(models.Model):
-    #handle city/state separately?
-    name = models.CharField(max_length=100)
-    image = models.CharField(max_length=250, default = '')
-    
-    class Meta:
-        verbose_name_plural='cities'
-
-    def __str__(self):
-        return self.name
 
 class Article(models.Model):
     title = models.CharField(max_length=100)
