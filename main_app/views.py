@@ -15,7 +15,7 @@ def signup(request):
         user_form = UserCreationForm(data = {'username':request.POST['username'], 'password1': request.POST['password1'], 'password2': request.POST['password2']})
         if user_form.is_valid():
             user = user_form.save()
-            new_form.user_id = user.id 
+            #new_form.user_id = user.id 
 
             login(request, user)
         return redirect('', home) #needs to change to profile when made
