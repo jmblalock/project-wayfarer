@@ -19,3 +19,25 @@ class Author(models.Model):
     
     def get_posts(self):
         return self.user.posts.all()
+
+class City(models.Model):
+    #handle city/state separately?
+    name = models.CharField(max_length=100)
+    image = models.CharField(max_length=250, default = '')
+    
+    class Meta:
+        verbose_name_plural='cities'
+
+    def __str__(self):
+        return self.name
+
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+    content = models.TextField()
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    created_on = models.DateField(auto_now_add=True)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+    
